@@ -9,10 +9,15 @@
 
 #define SUNXI_PWM_CTRL_REG		(SUNXI_PWM_BASE + 0)
 #define SUNXI_PWM_CH0_PERIOD		(SUNXI_PWM_BASE + 4)
+#define SUNXI_PWM_CH1_PERIOD		(SUNXI_PWM_BASE + 8)
 
 #define SUNXI_PWM_CTRL_PRESCALE0(x)	((x) & 0xf)
 #define SUNXI_PWM_CTRL_ENABLE0		(0x5 << 4)
 #define SUNXI_PWM_CTRL_POLARITY0(x)	((x) << 5)
+
+#define SUNXI_PWM_CTRL_PRESCALE1(x)	(((x) & 0xf) << 15)
+#define SUNXI_PWM_CTRL_ENABLE1		(0x5 << (4+15))
+#define SUNXI_PWM_CTRL_POLARITY1(x)	((x) << (5+15))
 
 #define SUNXI_PWM_PERIOD_80PCT		0x04af03c0
 
@@ -29,6 +34,11 @@
 #if defined CONFIG_MACH_SUN8I_A23 || defined CONFIG_MACH_SUN8I_A33
 #define SUNXI_PWM_PIN0			SUNXI_GPH(0)
 #define SUNXI_PWM_MUX			SUN8I_GPH_PWM
+#endif
+
+#if defined CONFIG_MACH_SUNIV
+#define SUNXI_PWM_PIN1			SUNXI_GPE(6)
+#define SUNXI_PWM_MUX			3
 #endif
 
 #endif

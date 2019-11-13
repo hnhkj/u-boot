@@ -606,6 +606,18 @@ static void sunxi_lcdc_backlight_enable(void)
 		return;
 	}
 #endif
+#ifdef SUNXI_PWM_PIN1
+	if (pin == SUNXI_PWM_PIN1) {
+		writel(SUNXI_PWM_CTRL_POLARITY1(PWM_ON) |
+		       SUNXI_PWM_CTRL_ENABLE1 |
+		       SUNXI_PWM_CTRL_PRESCALE1(0xf), SUNXI_PWM_CTRL_REG);
+
+		writel(SUNXI_PWM_PERIOD_80PCT, SUNXI_PWM_CH1_PERIOD);
+		sunxi_gpio_set_cfgpin(pin, SUNXI_PWM_MUX);
+		return;
+	}
+#endif
+	printk("%s %d\n",__FUNCTION__,pin);
 	if (pin >= 0)
 		gpio_direction_output(pin, PWM_ON);
 }
