@@ -283,8 +283,8 @@ void board_boot_order(u32 *spl_boot_list)
 		return;
 	}
 
-	spl_boot_list[0] = BOOT_DEVICE_MMC1;
-	spl_boot_list[1] = BOOT_DEVICE_SPI;
+	spl_boot_list[0] = BOOT_DEVICE_SPI;
+	spl_boot_list[1] = BOOT_DEVICE_MMC1;
 }
 #endif
 
