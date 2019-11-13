@@ -2,7 +2,7 @@
 
 ## 配置LCD
 
-参考官方文档，进行配置。LCD
+参考官方文档，进行配置。LCD背光配置增加，但是该功能仍需要完善。因为PWM功能没有工作。
 
 ```
 git clone https://github.com/hnhkj/u-boot.git
@@ -24,6 +24,9 @@ x:480,y:272,depth:18,pclk_khz:10000,le:42,ri:8,up:11,lo:4,hs:1,vs:1,sync:3,vmode
 bootcmd value
 (sf probe 0 50000000; sf read 0x80c00000 0x100000 0x4000; sf read 0x80008000 0x110000 0x400000; bootz 0x80008000 - 0x80c00000)
 
+# 打印数据到LCD屏
+Console ---> [*] Enable console multiplexing
+             [*] Select console devices from the environment
 
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- -j4
 sunxi-fel -p spiflash-write 0 ./u-boot-sunxi-with-spl.bin
